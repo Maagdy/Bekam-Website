@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Price tag shape -->
+  <path d="M280 40L472 232c10 10 10 26 0 36L308 432c-10 10-26 10-36 0L40 200V80c0-22 18-40 40-40h200z" fill="#E63946"/>
+  <!-- Tag hole -->
+  <circle cx="120" cy="120" r="24" fill="#ffffff"/>
+  <!-- Letter ba (ب) -->
+  <text x="260" y="310" font-family="Arial, sans-serif" font-size="180" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">ب</text>
+  <!-- Tag string -->
+  <path d="M472 232l20-20" stroke="#E63946" stroke-width="6" stroke-linecap="round" fill="none"/>
+</svg>

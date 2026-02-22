@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   THEME COLOR PALETTES (RGB values)
+   ============================================ */
+
+/* Red Blaze (Default) */
+:root, [data-theme="red"] {
+  --color-primary-50: 254 242 242;
+  --color-primary-100: 254 226 226;
+  --color-primary-200: 254 202 202;
+  --color-primary-300: 252 165 165;
+  --color-primary-400: 248 113 113;
+  --color-primary-500: 230 57 70;
+  --color-primary-600: 220 38 38;
+  --color-primary-700: 185 28 28;
+  --color-primary-800: 153 27 27;
+  --color-primary-900: 127 29 29;
+  --color-secondary-50: 240 247 255;
+  --color-secondary-100: 224 239 255;
+  --color-secondary-200: 185 223 255;
+  --color-secondary-300: 124 197 255;
+  --color-secondary-400: 54 169 255;
+  --color-secondary-500: 69 123 157;
+  --color-secondary-600: 58 106 136;
+  --color-secondary-700: 47 86 112;
+  --color-secondary-800: 41 74 95;
+  --color-secondary-900: 38 63 80;
+  --color-success-50: 236 253 245;
+  --color-success-100: 209 250 229;
+  --color-success-200: 167 243 208;
+  --color-success-300: 110 231 183;
+  --color-success-400: 52 211 153;
+  --color-success-500: 45 198 83;
+  --color-success-600: 5 150 105;
+  --color-success-700: 4 120 87;
+  --color-success-800: 6 95 70;
+  --color-success-900: 6 78 59;
+  --color-warning-50: 255 251 235;
+  --color-warning-100: 254 243 199;
+  --color-warning-200: 253 230 138;
+  --color-warning-300: 252 211 77;
+  --color-warning-400: 251 191 36;
+  --color-warning-500: 244 162 97;
+  --color-warning-600: 217 119 6;
+  --color-warning-700: 180 83 9;
+  --color-warning-800: 146 64 14;
+  --color-warning-900: 120 53 15;
+  --color-surface-50: 249 250 251;
+  --color-surface-100: 243 244 246;
+  --color-surface-200: 229 231 235;
+  --theme-gradient: linear-gradient(135deg, rgb(230 57 70) 0%, rgb(185 28 28) 100%);
+}
+
+/* Blue Ocean */
+[data-theme="blue"] {
+  --color-primary-50: 239 246 255;
+  --color-primary-100: 219 234 254;
+  --color-primary-200: 191 219 254;
+  --color-primary-300: 147 197 253;
+  --color-primary-400: 96 165 250;
+  --color-primary-500: 59 130 246;
+  --color-primary-600: 37 99 235;
+  --color-primary-700: 29 78 216;
+  --color-primary-800: 30 64 175;
+  --color-primary-900: 30 58 138;
+  --color-secondary-50: 240 253 250;
+  --color-secondary-100: 204 251 241;
+  --color-secondary-200: 153 246 228;
+  --color-secondary-300: 94 234 212;
+  --color-secondary-400: 45 212 191;
+  --color-secondary-500: 20 184 166;
+  --color-secondary-600: 13 148 136;
+  --color-secondary-700: 15 118 110;
+  --color-secondary-800: 17 94 89;
+  --color-secondary-900: 19 78 74;
+  --color-success-50: 240 253 250;
+  --color-success-100: 204 251 241;
+  --color-success-200: 153 246 228;
+  --color-success-300: 94 234 212;
+  --color-success-400: 45 212 191;
+  --color-success-500: 20 184 166;
+  --color-success-600: 13 148 136;
+  --color-success-700: 15 118 110;
+  --color-success-800: 17 94 89;
+  --color-success-900: 19 78 74;
+  --color-warning-50: 255 247 237;
+  --color-warning-100: 255 237 213;
+  --color-warning-200: 254 215 170;
+  --color-warning-300: 253 186 116;
+  --color-warning-400: 251 146 60;
+  --color-warning-500: 249 115 22;
+  --color-warning-600: 234 88 12;
+  --color-warning-700: 194 65 12;
+  --color-warning-800: 154 52 18;
+  --color-warning-900: 124 45 18;
+  --color-surface-50: 248 250 252;
+  --color-surface-100: 241 245 249;
+  --color-surface-200: 226 232 240;
+  --theme-gradient: linear-gradient(135deg, rgb(59 130 246) 0%, rgb(29 78 216) 100%);
+}
+
+/* Green Forest */
+[data-theme="green"] {
+  --color-primary-50: 240 253 244;
+  --color-primary-100: 220 252 231;
+  --color-primary-200: 187 247 208;
+  --color-primary-300: 134 239 172;
+  --color-primary-400: 74 222 128;
+  --color-primary-500: 34 197 94;
+  --color-primary-600: 22 163 74;
+  --color-primary-700: 21 128 61;
+  --color-primary-800: 22 101 52;
+  --color-primary-900: 20 83 45;
+  --color-secondary-50: 254 252 232;
+  --color-secondary-100: 254 249 195;
+  --color-secondary-200: 254 240 138;
+  --color-secondary-300: 253 224 71;
+  --color-secondary-400: 250 204 21;
+  --color-secondary-500: 202 138 4;
+  --color-secondary-600: 161 98 7;
+  --color-secondary-700: 133 77 14;
+  --color-secondary-800: 113 63 18;
+  --color-secondary-900: 101 56 21;
+  --color-success-50: 239 246 255;
+  --color-success-100: 219 234 254;
+  --color-success-200: 191 219 254;
+  --color-success-300: 147 197 253;
+  --color-success-400: 96 165 250;
+  --color-success-500: 59 130 246;
+  --color-success-600: 37 99 235;
+  --color-success-700: 29 78 216;
+  --color-success-800: 30 64 175;
+  --color-success-900: 30 58 138;
+  --color-warning-50: 255 247 237;
+  --color-warning-100: 255 237 213;
+  --color-warning-200: 254 215 170;
+  --color-warning-300: 253 186 116;
+  --color-warning-400: 251 146 60;
+  --color-warning-500: 249 115 22;
+  --color-warning-600: 234 88 12;
+  --color-warning-700: 194 65 12;
+  --color-warning-800: 154 52 18;
+  --color-warning-900: 124 45 18;
+  --color-surface-50: 247 254 247;
+  --color-surface-100: 240 253 240;
+  --color-surface-200: 220 252 231;
+  --theme-gradient: linear-gradient(135deg, rgb(34 197 94) 0%, rgb(21 128 61) 100%);
+}
+
+/* Purple Royal */
+[data-theme="purple"] {
+  --color-primary-50: 250 245 255;
+  --color-primary-100: 243 232 255;
+  --color-primary-200: 233 213 255;
+  --color-primary-300: 216 180 254;
+  --color-primary-400: 192 132 252;
+  --color-primary-500: 168 85 247;
+  --color-primary-600: 147 51 234;
+  --color-primary-700: 126 34 206;
+  --color-primary-800: 107 33 168;
+  --color-primary-900: 88 28 135;
+  --color-secondary-50: 255 241 242;
+  --color-secondary-100: 255 228 230;
+  --color-secondary-200: 254 205 211;
+  --color-secondary-300: 253 164 175;
+  --color-secondary-400: 251 113 133;
+  --color-secondary-500: 244 63 94;
+  --color-secondary-600: 225 29 72;
+  --color-secondary-700: 190 18 60;
+  --color-secondary-800: 159 18 57;
+  --color-secondary-900: 136 19 55;
+  --color-success-50: 236 253 245;
+  --color-success-100: 209 250 229;
+  --color-success-200: 167 243 208;
+  --color-success-300: 110 231 183;
+  --color-success-400: 52 211 153;
+  --color-success-500: 16 185 129;
+  --color-success-600: 5 150 105;
+  --color-success-700: 4 120 87;
+  --color-success-800: 6 95 70;
+  --color-success-900: 6 78 59;
+  --color-warning-50: 255 251 235;
+  --color-warning-100: 254 243 199;
+  --color-warning-200: 253 230 138;
+  --color-warning-300: 252 211 77;
+  --color-warning-400: 251 191 36;
+  --color-warning-500: 245 158 11;
+  --color-warning-600: 217 119 6;
+  --color-warning-700: 180 83 9;
+  --color-warning-800: 146 64 14;
+  --color-warning-900: 120 53 15;
+  --color-surface-50: 250 248 254;
+  --color-surface-100: 245 243 255;
+  --color-surface-200: 237 233 254;
+  --theme-gradient: linear-gradient(135deg, rgb(168 85 247) 0%, rgb(126 34 206) 100%);
+}
+
+/* Orange Sunset */
+[data-theme="orange"] {
+  --color-primary-50: 255 247 237;
+  --color-primary-100: 255 237 213;
+  --color-primary-200: 254 215 170;
+  --color-primary-300: 253 186 116;
+  --color-primary-400: 251 146 60;
+  --color-primary-500: 249 115 22;
+  --color-primary-600: 234 88 12;
+  --color-primary-700: 194 65 12;
+  --color-primary-800: 154 52 18;
+  --color-primary-900: 124 45 18;
+  --color-secondary-50: 254 242 242;
+  --color-secondary-100: 254 226 226;
+  --color-secondary-200: 254 202 202;
+  --color-secondary-300: 252 165 165;
+  --color-secondary-400: 248 113 113;
+  --color-secondary-500: 239 68 68;
+  --color-secondary-600: 220 38 38;
+  --color-secondary-700: 185 28 28;
+  --color-secondary-800: 153 27 27;
+  --color-secondary-900: 127 29 29;
+  --color-success-50: 236 253 245;
+  --color-success-100: 209 250 229;
+  --color-success-200: 167 243 208;
+  --color-success-300: 110 231 183;
+  --color-success-400: 52 211 153;
+  --color-success-500: 16 185 129;
+  --color-success-600: 5 150 105;
+  --color-success-700: 4 120 87;
+  --color-success-800: 6 95 70;
+  --color-success-900: 6 78 59;
+  --color-warning-50: 254 252 232;
+  --color-warning-100: 254 249 195;
+  --color-warning-200: 254 240 138;
+  --color-warning-300: 253 224 71;
+  --color-warning-400: 250 204 21;
+  --color-warning-500: 202 138 4;
+  --color-warning-600: 161 98 7;
+  --color-warning-700: 133 77 14;
+  --color-warning-800: 113 63 18;
+  --color-warning-900: 101 56 21;
+  --color-surface-50: 255 251 245;
+  --color-surface-100: 255 247 237;
+  --color-surface-200: 255 237 213;
+  --theme-gradient: linear-gradient(135deg, rgb(249 115 22) 0%, rgb(194 65 12) 100%);
+}
+
+/* Teal Fresh */
+[data-theme="teal"] {
+  --color-primary-50: 240 253 250;
+  --color-primary-100: 204 251 241;
+  --color-primary-200: 153 246 228;
+  --color-primary-300: 94 234 212;
+  --color-primary-400: 45 212 191;
+  --color-primary-500: 20 184 166;
+  --color-primary-600: 13 148 136;
+  --color-primary-700: 15 118 110;
+  --color-primary-800: 17 94 89;
+  --color-primary-900: 19 78 74;
+  --color-secondary-50: 239 246 255;
+  --color-secondary-100: 219 234 254;
+  --color-secondary-200: 191 219 254;
+  --color-secondary-300: 147 197 253;
+  --color-secondary-400: 96 165 250;
+  --color-secondary-500: 59 130 246;
+  --color-secondary-600: 37 99 235;
+  --color-secondary-700: 29 78 216;
+  --color-secondary-800: 30 64 175;
+  --color-secondary-900: 30 58 138;
+  --color-success-50: 236 253 245;
+  --color-success-100: 209 250 229;
+  --color-success-200: 167 243 208;
+  --color-success-300: 110 231 183;
+  --color-success-400: 52 211 153;
+  --color-success-500: 45 198 83;
+  --color-success-600: 5 150 105;
+  --color-success-700: 4 120 87;
+  --color-success-800: 6 95 70;
+  --color-success-900: 6 78 59;
+  --color-warning-50: 255 251 235;
+  --color-warning-100: 254 243 199;
+  --color-warning-200: 253 230 138;
+  --color-warning-300: 252 211 77;
+  --color-warning-400: 251 191 36;
+  --color-warning-500: 244 162 97;
+  --color-warning-600: 217 119 6;
+  --color-warning-700: 180 83 9;
+  --color-warning-800: 146 64 14;
+  --color-warning-900: 120 53 15;
+  --color-surface-50: 245 253 252;
+  --color-surface-100: 240 253 250;
+  --color-surface-200: 204 251 241;
+  --theme-gradient: linear-gradient(135deg, rgb(20 184 166) 0%, rgb(15 118 110) 100%);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply font-inter text-gray-900 antialiased;
+    background-color: rgb(var(--color-surface-50));
+  }
+
+  [dir='rtl'] body {
+    @apply font-cairo;
+  }
+
+  /* Better focus styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-medium
+           transition-all duration-200 min-h-[44px] min-w-[44px] text-base
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           active:scale-[0.97] select-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600
+           focus-visible:ring-primary-500 shadow-md shadow-primary-500/20
+           hover:shadow-lg hover:shadow-primary-500/30;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-500 text-white hover:bg-secondary-600
+           focus-visible:ring-secondary-500 shadow-md shadow-secondary-500/20;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-primary-500 text-primary-500
+           hover:bg-primary-50 focus-visible:ring-primary-500;
+  }
+
+  .btn-ghost {
+    @apply btn text-gray-600 hover:bg-gray-100 focus-visible:ring-gray-300;
+  }
+
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white
+           text-base min-h-[44px] transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500
+           placeholder:text-gray-400 hover:border-gray-300;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-4
+           transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-md hover:border-gray-200 hover:-translate-y-0.5;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--theme-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Bottom nav for mobile */
+  .bottom-nav {
+    @apply fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-lg border-t border-gray-200
+           flex items-center justify-around py-2 px-4 z-40 md:hidden
+           safe-bottom;
+  }
+
+  .bottom-nav-item {
+    @apply flex flex-col items-center gap-0.5 text-xs text-gray-500
+           transition-colors min-w-[48px] min-h-[48px] justify-center
+           rounded-xl;
+  }
+
+  .bottom-nav-item.active {
+    @apply text-primary-500 font-medium;
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
