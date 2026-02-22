@@ -14,15 +14,16 @@ export default function Product() {
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === 'ar';
   const { selectedRegion } = useRegion();
-  const { product, prices, isLoading, error } = useProductPrices(id, selectedRegion?.id);
+  const { product, prices, isLoading, error, refetch } = useProductPrices(id, selectedRegion?.id);
   const { vote, isVoting } = useVotePrice();
 
   const cheapestPrice = prices.length > 0
     ? Math.min(...prices.map((p) => p.price))
     : null;
 
-  function handleVote(priceId: string, type: 'up' | 'down') {
-    vote(priceId, type);
+  async function handleVote(priceId: string, type: 'up' | 'down') {
+    await vote(priceId, type);
+    refetch();
   }
 
   const BackIcon = isAr ? ArrowRight : ArrowLeft;

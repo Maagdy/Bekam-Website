@@ -24,28 +24,27 @@ export function useProductPrices(productId: string | undefined, regionId?: strin
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  async function fetchPrices() {
     if (!productId) return;
-
-    async function fetchPrices() {
-      setIsLoading(true);
-      try {
-        const params = regionId ? { region_id: regionId } : {};
-        const { data } = await api.get(`/products/${productId}/prices`, { params });
-        setProduct(data.product);
-        setPrices(data.prices);
-        setError(null);
-      } catch {
-        setError('Failed to load prices');
-      } finally {
-        setIsLoading(false);
-      }
+    setIsLoading(true);
+    try {
+      const params = regionId ? { region_id: regionId } : {};
+      const { data } = await api.get(`/products/${productId}/prices`, { params });
+      setProduct(data.product);
+      setPrices(data.prices);
+      setError(null);
+    } catch {
+      setError('Failed to load prices');
+    } finally {
+      setIsLoading(false);
     }
+  }
 
+  useEffect(() => {
     fetchPrices();
   }, [productId, regionId]);
 
-  return { product, prices, isLoading, error };
+  return { product, prices, isLoading, error, refetch: fetchPrices };
 }
 
 export function useSubmitPrice() {
