@@ -52,15 +52,6 @@ cp .env.example .env   # fill in the values below
 npm run dev            # http://localhost:5173
 ```
 
-### Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VITE_SUPABASE_URL` | Yes | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Yes | Supabase public API key |
-| `VITE_API_URL` | Yes | Backend API URL (default: `http://localhost:3001/api`) |
-| `VITE_SENTRY_DSN` | No | Sentry DSN for error monitoring |
-
 ### Scripts
 
 ```bash
