@@ -46,7 +46,9 @@
     "average": "Average Price",
     "trend_up": "Price is rising",
     "trend_down": "Price is dropping",
-    "trend_stable": "Price is stable"
+    "trend_stable": "Price is stable",
+    "chart_title": "Price History",
+    "unknown_store": "Unknown Store"
   },
   "store": {
     "verified": "Verified",

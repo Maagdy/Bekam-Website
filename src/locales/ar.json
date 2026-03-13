@@ -46,7 +46,9 @@
     "average": "متوسط السعر",
     "trend_up": "السعر في ارتفاع",
     "trend_down": "السعر في انخفاض",
-    "trend_stable": "السعر مستقر"
+    "trend_stable": "السعر مستقر",
+    "chart_title": "تاريخ الأسعار",
+    "unknown_store": "محل غير معروف"
   },
   "store": {
     "verified": "موثق",

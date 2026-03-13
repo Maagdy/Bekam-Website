@@ -8,6 +8,7 @@ import CommentSection from '../components/CommentSection';
 import PriceAlertButton from '../components/PriceAlertButton';
 import TrustBadge from '../components/TrustBadge';
 import SEOHead from '../components/SEOHead';
+import PriceChart from '../components/PriceChart';
 
 export default function Product() {
   const { id } = useParams<{ id: string }>();
@@ -142,6 +143,9 @@ export default function Product() {
           </div>
         </div>
       )}
+
+      {/* Price Chart */}
+      <PriceChart prices={prices} />
 
       {/* Price Alert */}
       {id && <PriceAlertButton productId={id} />}

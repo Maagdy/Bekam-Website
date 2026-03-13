@@ -38,6 +38,9 @@ export default defineConfig({
       },
       workbox: {
         importScripts: ['/sw-push.js'],
+        // Limit precache size — skip large source maps
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3MB
+        cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
             urlPattern: /^https?:\/\/.*\/api\/.*/i,
@@ -47,8 +50,24 @@ export default defineConfig({
               expiration: {
                 maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24, // 1 day
+                purgeOnQuotaError: true,
               },
               networkTimeoutSeconds: 10,
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:js|css)$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'static-assets-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
+                purgeOnQuotaError: true,
+              },
               cacheableResponse: {
                 statuses: [0, 200],
               },
@@ -60,8 +79,9 @@ export default defineConfig({
             options: {
               cacheName: 'image-cache',
               expiration: {
-                maxEntries: 60,
+                maxEntries: 100,
                 maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+                purgeOnQuotaError: true,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -74,8 +94,9 @@ export default defineConfig({
             options: {
               cacheName: 'google-fonts-cache',
               expiration: {
-                maxEntries: 30,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 90, // 90 days
+                purgeOnQuotaError: true,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -89,6 +110,10 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
+      '/api/v1': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,

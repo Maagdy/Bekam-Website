@@ -49,10 +49,16 @@ export default function Inflation() {
     ? data.filter(d => d.category_id === selectedCategory)
     : data;
 
+  // Format ISO date to readable label
+  function formatPeriod(iso: string): string {
+    const date = new Date(iso + 'T00:00:00');
+    return date.toLocaleDateString(isAr ? 'ar-EG' : 'en-US', { month: 'short', day: 'numeric' });
+  }
+
   // Transform for chart — group by period
   const chartData = Array.from(
     filtered.reduce((acc, item) => {
-      const existing = acc.get(item.period) || { period: item.period };
+      const existing = acc.get(item.period) || { period: item.period, label: formatPeriod(item.period) };
       const catName = isAr ? item.category_ar : item.category_en;
       existing[catName] = item.avg_price;
       acc.set(item.period, existing);
@@ -72,7 +78,7 @@ export default function Inflation() {
           {t('inflation.title', 'Price Trends')}
         </h1>
         <div className="flex gap-2">
-          {[30, 90].map(d => (
+          {[7, 30, 90].map(d => (
             <button
               key={d}
               onClick={() => setDays(d)}
@@ -125,9 +131,16 @@ export default function Inflation() {
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="period" tick={{ fontSize: 11 }} />
+              <XAxis dataKey="label" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{ borderRadius: 12, border: '1px solid #e5e7eb', fontSize: 12, direction: isAr ? 'rtl' : 'ltr' }}
+                formatter={(value) => value != null ? [`${Number(value).toFixed(2)} ${t('price.egp', 'EGP')}`] : []}
+                labelFormatter={(_label, payload) => {
+                  const item = payload?.[0]?.payload;
+                  return item?.label || _label;
+                }}
+              />
               <Legend />
               {categories.slice(0, 10).map((cat, i) => (
                 <Bar
